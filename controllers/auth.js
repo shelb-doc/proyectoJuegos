@@ -21,15 +21,15 @@ exports.signup = async (req, res)=>{
         contraseña: hPassword
     }
     await pool.query("INSERT INTO usuarios set ?", [nuevoUsuario]);
-    res.sendFile(path.join(__dirname, '../Visuals/auth', 'signin.html'));
+    res.sendFile(path.join(__dirname, '../visuals/auth', 'signin.html'));
 }
 
 exports.signupGET = (req, res)=>{
-    res.sendFile(path.join(__dirname, '../Visuals/auth', 'signup.html'));
+    res.sendFile(path.join(__dirname, '../visuals/auth', 'signup.html'));
 }
 
 exports.signinGET = (req, res)=>{
-    res.sendFile(path.join(__dirname, '../Visuals/auth', 'signin.html'));
+    res.sendFile(path.join(__dirname, '../visuals/auth', 'signin.html'));
 }
 
 exports.signin = async (req, res)=>{
@@ -44,7 +44,7 @@ exports.signin = async (req, res)=>{
             var token = jwt.sign({id: bUsuario[0].id}, config.secret, {
                 expiresIn: 86400 //24 horas
             });
-            res.sendFile(path.join(__dirname, "../Visuals/Juego/index.html"));
+            res.sendFile(path.join(__dirname, "../visuals/Juego/index.html"));
             } else{
             res.status(401).send({
                 accessToken: null,
