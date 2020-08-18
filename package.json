@@ -1,7 +1,7 @@
 {
-  "name": "tic-tac-toe",
+  "name": "projectoJuegos",
   "version": "0.0.1",
-  "description": "Aplicación de la vieja",
+  "description": "Colleccion de juegos con Auth.",
   "main": "server.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
