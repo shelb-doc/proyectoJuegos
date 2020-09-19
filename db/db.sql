@@ -9,7 +9,7 @@ CREATE TABLE usuarios(
     apellido VARCHAR(30) NOT NULL,
     email VARCHAR(70) NOT NULL,
     contraseña VARCHAR(60) NOT NULL
-)
+);
 
 ALTER TABLE usuarios
     ADD PRIMARY KEY (id);
