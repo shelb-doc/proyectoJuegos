@@ -5,8 +5,8 @@ var {encryptPassword, matchPassword} = require("../helpers/encryptPassword");
 const path = require("path");
 
 exports.signup = async (req, res)=>{
-    const { usuario, nombre, apellido, email, contraseña } = req.body;
-    const hPassword = encryptPassword(contraseña);
+    const { usuario, nombre, apellido, email, psword } = req.body;
+    const hPassword = encryptPassword(psword);
     var isAdmin;
         if(email === "andrespoliv@gmail.com"){
             isAdmin = 1;
@@ -18,7 +18,7 @@ exports.signup = async (req, res)=>{
         nombre,
         apellido,
         email,
-        contraseña: hPassword
+        psword: hPassword
     }
     await pool.query("INSERT INTO usuarios set ?", [nuevoUsuario]);
     res.sendFile(path.join(__dirname, '../visuals/auth', 'signin.html'));
@@ -33,22 +33,22 @@ exports.signinGET = (req, res)=>{
 }
 
 exports.signin = async (req, res)=>{
-    const {usuario, contraseña} = req.body;
+    const {usuario, psword} = req.body;
     const bUsuario = await pool.query("SELECT * FROM usuarios WHERE usuario = ?", [usuario]);
     if(bUsuario[0]){
             var verPassword = matchPassword(
-                contraseña,
-                bUsuario[0].contraseña
+                psword,
+                bUsuario[0].psword
             )
         if(verPassword){
             var token = jwt.sign({id: bUsuario[0].id}, config.secret, {
                 expiresIn: 86400 //24 horas
             });
-            res.sendFile(path.join(__dirname, "../visuals/Juego/index.html"));
+            res.sendFile(path.join(__dirname, "../visuals/juegos/hangman/index.html"));
             } else{
             res.status(401).send({
                 accessToken: null,
-                message: "Contraseña inválida"
+                message: "psword inválida"
             });
         }
     }else{
