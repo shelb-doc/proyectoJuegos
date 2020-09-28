@@ -29,6 +29,8 @@ server.get ('/', (req, res) => {
 //Juego
 var game = require ('./routes/ticTacToe');
 game (server);
+var game = require ('./routes/hangman');
+game (server);
 
 //Autenticación
 var auth = require ('./routes/authUsers');
