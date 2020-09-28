@@ -25,6 +25,7 @@ server.get ('/', (req, res) => {
   res.json ({message: 'Bienvenidos a mi primera aplicación'});
 });
 
+
 //Juego
 var game = require ('./routes/ticTacToe');
 game (server);

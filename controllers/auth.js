@@ -45,7 +45,7 @@ exports.signin = async (req, res) => {
         expiresIn: 86400, //24 horas
       });
       res.sendFile (
-        path.join (__dirname, '../visuals/juegos/hangman/index.html')
+        path.join (__dirname, '../visuals/home/index.html')
       );
     } else {
       res.status (401).send ({
